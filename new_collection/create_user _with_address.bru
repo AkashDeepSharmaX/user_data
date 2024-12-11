@@ -1,0 +1,25 @@
+meta {
+  name: create_user _with_address
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/users/
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+      "username": "Diptanshu",
+      "email": "diptanshu@gmail.com",
+      "address": {
+          "street": "jassur",
+          "city": "jassur ",
+          "zipCode": "176201",
+          "country": " India"
+      }
+  }
+  
+}

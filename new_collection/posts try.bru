@@ -1,0 +1,26 @@
+meta {
+  name: posts try
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://localhost:8080/posts/
+  body: none
+  auth: none
+}
+
+tests {
+  {
+      "username": "exampleUser",
+      "email": "example@example.com",
+      "address": {
+          "street": "123 Main St",
+          "city": "Example City",
+          "zipCode": "12345",
+          "country": "Example Country"
+      }
+  }
+  
+  
+}
