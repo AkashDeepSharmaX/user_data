@@ -12,7 +12,7 @@ public class Comments {
     public Post getPost() {
         return post;
     }
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="user_id")
     private User user;
 

@@ -1,6 +1,9 @@
 package com.example.softrelic.domain;
 import jakarta.persistence.*;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class User {
@@ -8,7 +11,8 @@ public class User {
     @GeneratedValue(strategy = GenerationType. IDENTITY)
     private long id;
     private String email;
-    private String username ;
+    private String username;
+
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
@@ -21,7 +25,7 @@ public class User {
         this.address = address;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Comments> comments;
 
     public String getUsername() {
@@ -32,7 +36,7 @@ public class User {
         this.username = username;
     }
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Post> posts;
 
     public List<Post> getPosts() {
