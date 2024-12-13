@@ -1,6 +1,6 @@
-package com.example.softrelic.Controller;
+package com.example.softrelic.controller;
 
-import com.example.softrelic.Service.AddressService;
+import com.example.softrelic.service.AddressService;
 import com.example.softrelic.domain.Address;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

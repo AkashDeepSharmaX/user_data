@@ -1,4 +1,4 @@
-package com.example.softrelic.Repository;
+package com.example.softrelic.repository;
 
 import com.example.softrelic.domain.Post;
 import org.springframework.data.jpa.repository.JpaRepository;

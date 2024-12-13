@@ -1,4 +1,4 @@
-package com.example.softrelic.Repository;
+package com.example.softrelic.repository;
 
 
 import com.example.softrelic.domain.User;
@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findByUsernameLike(String text);
-
+    List<User> findAll();
 }

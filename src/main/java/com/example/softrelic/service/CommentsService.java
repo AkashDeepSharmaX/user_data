@@ -1,9 +1,8 @@
-package com.example.softrelic.Service;
-import com.example.softrelic.Repository.CommentsRepository;
+package com.example.softrelic.service;
+import com.example.softrelic.repository.CommentsRepository;
 import com.example.softrelic.domain.Comments;
 import com.example.softrelic.domain.Post;
 import com.example.softrelic.domain.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -1,11 +1,8 @@
 package com.example.softrelic.bootstrap;
 
-import com.example.softrelic.Service.CommentsService;
-import com.example.softrelic.Service.PostService;
-import com.example.softrelic.Service.UserService;
-import com.example.softrelic.domain.Comments;
-import com.example.softrelic.domain.Post;
-import com.example.softrelic.domain.User;
+import com.example.softrelic.service.CommentsService;
+import com.example.softrelic.service.PostService;
+import com.example.softrelic.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 

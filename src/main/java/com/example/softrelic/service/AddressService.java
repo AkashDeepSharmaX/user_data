@@ -1,6 +1,6 @@
-package com.example.softrelic.Service;
+package com.example.softrelic.service;
 
-import com.example.softrelic.Repository.AddressRepository;
+import com.example.softrelic.repository.AddressRepository;
 import com.example.softrelic.domain.Address;
 import org.springframework.stereotype.Service;
 

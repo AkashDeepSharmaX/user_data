@@ -2,6 +2,7 @@ package com.example.softrelic.domain;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import org.hibernate.sql.ast.tree.from.MappedByTableGroup;
 
@@ -14,6 +15,7 @@ public class Post {
     private long id;
     private String title;
     private String text;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")  // Define the format
     private LocalDateTime createdAt;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -70,4 +72,5 @@ public class Post {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+
 }
