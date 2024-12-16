@@ -24,13 +24,10 @@ public class PostService {
         if (userOptional.isEmpty()) {
             throw new RuntimeException("User not found with id: " + userId);
         }
-
         User user = userOptional.get();
         Post post = new Post();
         post.setText(postDto.getText());
         post.setTitle(postDto.getTitle());
-
-      //  post.setCreateAt(postDto.getCreateAt());
         post.setUser(user);
 
         return postRepository.save(post);

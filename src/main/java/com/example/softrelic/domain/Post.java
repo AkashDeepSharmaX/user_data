@@ -3,7 +3,9 @@ package com.example.softrelic.domain;
 import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.sql.ast.tree.from.MappedByTableGroup;
 
 import java.util.List;
@@ -16,10 +18,14 @@ public class Post {
     private String title;
     private String text;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")  // Define the format
+    @Column(name = "created_at")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private LocalDateTime createdAt;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name ="user_id")
+    @JsonIgnore
     private User user;
 
     @OneToMany(mappedBy = "post", cascade = CascadeType.ALL)

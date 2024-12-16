@@ -1,5 +1,6 @@
 package com.example.softrelic.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 @Entity
 public class Comments {
@@ -8,6 +9,7 @@ public class Comments {
     private long id;
     private String text;
     @ManyToOne
+    @JsonIgnore
     private Post post;
     public Post getPost() {
         return post;

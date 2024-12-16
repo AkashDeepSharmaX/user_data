@@ -14,7 +14,7 @@ public class PostController {
         this.postService = postService;
     }
 
-    @PostMapping({"userId"})
+    @PostMapping("/{userId}")
     public Post createPost(@RequestBody PostDto postDto , @PathVariable Long userId) {
         return postService.createPost(postDto, userId);
     }
