@@ -25,7 +25,6 @@ public class UserService {
         address.setCity(userDto.getAddressDTO().getCity());
         address.setZipCode(userDto.getAddressDTO().getZipcode());
         address.setCountry(userDto.getAddressDTO().getCountry());
-
         Address savedAddress = addressRepository.save(address);
 
         User user = new User();
