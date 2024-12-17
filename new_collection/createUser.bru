@@ -5,7 +5,19 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/users/
-  body: none
+  url: http://localhost:8080/users
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "age":-1,
+    "addressDTO":{
+    "street":"first street",
+    "city":"some city",
+    "zipcode":"121212",
+    "country":"US"
+    }
+  }
 }

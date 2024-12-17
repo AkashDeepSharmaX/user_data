@@ -5,7 +5,14 @@ meta {
 }
 
 post {
-  url: localhost:8080/posts
-  body: none
+  url: http://localhost:8080/posts/1
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "text":"this is text",
+    "title":"this is title"
+  }
 }

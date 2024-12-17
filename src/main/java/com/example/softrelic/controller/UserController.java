@@ -6,8 +6,10 @@ import com.example.softrelic.service.UserService;
 import com.example.softrelic.domain.User;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,17 +28,23 @@ public class UserController {
         this.userRepository = userRepository;
     }
     @GetMapping
-    public List<User> watchUser() {
-        return  userRepository.findAll();
+    public ResponseEntity<List<User>> watchUser() {
+        var data = userRepository.findAll();
+//        List<User> data = userRepository.findAll();
+        return new ResponseEntity<>(data, HttpStatus.OK);
     }
 
     @PostMapping()
-    public User create(@Valid @RequestBody UserDto userDto, BindingResult result) {
+    public ResponseEntity<?> create(@Valid @RequestBody UserDto userDto, BindingResult result) {
         if(result.hasErrors()) {
-            result.getAllErrors().stream().map((error) -> error.getDefaultMessage()).forEach(System.out::println);
-            throw new RuntimeException("Request not valid");
+            List<ObjectError> errors = result.getAllErrors();
+            List<String> errorMessages = new ArrayList<>();
+            for(int i = 0; i < errors.size(); i++){
+               errorMessages.add(errors.get(i).getDefaultMessage());
+            }
+            return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST) ;
         }
-        return userService.createUser(userDto);
+        return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.OK);
     }
 
 
