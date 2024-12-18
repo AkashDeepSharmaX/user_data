@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotNull;
 public class PostDto {
     @NotNull(message = "Username can not be null")
     private String text;
-    @NotEmpty(message = "Username can not be null")
+    @NotEmpty(message = "Title can not be empty")
     private String title;
 
     public String getText() {
