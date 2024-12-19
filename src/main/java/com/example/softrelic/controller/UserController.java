@@ -4,6 +4,7 @@ import com.example.softrelic.dtos.UserDto;
 import com.example.softrelic.repository.UserRepository;
 import com.example.softrelic.service.UserService;
 import com.example.softrelic.domain.User;
+import com.example.softrelic.utils.SuccessResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,22 +29,16 @@ public class UserController {
         this.userRepository = userRepository;
     }
     @GetMapping
-    public ResponseEntity<List<User>> watchUser() {
-        var data = userRepository.findAll();
-//        List<User> data = userRepository.findAll();
-        return new ResponseEntity<>(data, HttpStatus.OK);
+//    public ResponseEntity<List<User>> watchUser() {
+      public ResponseEntity<SuccessResponse<List<User>>> watchUser() {
+//        var data = userRepository.findAll();
+        List<User> data = userRepository.findAll();
+        SuccessResponse response = new SuccessResponse("users fetched successfully", data);
+        return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
     @PostMapping()
-    public ResponseEntity<?> create(@Valid @RequestBody UserDto userDto, BindingResult result) {
-        if(result.hasErrors()) {
-            List<ObjectError> errors = result.getAllErrors();
-            List<String> errorMessages = new ArrayList<>();
-            for(int i = 0; i < errors.size(); i++){
-               errorMessages.add(errors.get(i).getDefaultMessage());
-            }
-            return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST) ;
-        }
+    public ResponseEntity<?> create(@Valid @RequestBody UserDto userDto) {
         return new ResponseEntity<>(userService.createUser(userDto), HttpStatus.OK);
     }
 

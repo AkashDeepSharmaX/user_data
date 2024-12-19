@@ -14,7 +14,9 @@ public class Comments {
     public Post getPost() {
         return post;
     }
+
     @ManyToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
     @JoinColumn(name ="user_id")
     private User user;
 
