@@ -1,10 +1,7 @@
 package com.example.softrelic.controller;
 
-import com.example.softrelic.domain.Post;
 import com.example.softrelic.dtos.CommentDto;
-import com.example.softrelic.dtos.PostDto;
 import com.example.softrelic.service.CommentsService;
-import com.example.softrelic.service.PostService;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,22 +21,17 @@ public class CommentsController {
         this.commentsService = commentsService;
     }
 
-
-    @PostMapping({"postId"})
-    public ResponseEntity<?> createComment(@Valid @RequestBody CommentDto commentDto, @PathVariable long postId ,long userId, BindingResult result){
-        if (result.hasErrors()){
-            List<ObjectError> errors = result.getAllErrors();
+    @PostMapping("/{postId}/{userId}")
+    public ResponseEntity<?> createComment(@Valid @RequestBody CommentDto commentDto, @PathVariable long postId, @PathVariable long userId,
+            BindingResult result) {
+        if (result.hasErrors()) {
             List<String> errorMessages = new ArrayList<>();
-            for(int i = 0; i < errors.size(); i++){
-                errorMessages.add(errors.get(i).getDefaultMessage());
+            for (ObjectError error : result.getAllErrors()) {
+                errorMessages.add(error.getDefaultMessage());
             }
-            return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST) ;
-
+            return new ResponseEntity<>(errorMessages, HttpStatus.BAD_REQUEST);
         }
-   return new ResponseEntity<>(commentsService.createComment(commentDto,postId ,userId),HttpStatus.OK);
 
+        return new ResponseEntity<>(commentsService.createComment(commentDto, postId, userId), HttpStatus.OK);
     }
-    }
-
-
-
+}
