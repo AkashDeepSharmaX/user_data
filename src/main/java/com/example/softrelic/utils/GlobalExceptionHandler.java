@@ -27,4 +27,4 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
         }
        return new ResponseEntity<>(new ErrorResponse("Some error occurred", errors), HttpStatus.BAD_REQUEST);
     }
-}
+  }

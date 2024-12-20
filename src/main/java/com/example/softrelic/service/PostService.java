@@ -3,10 +3,14 @@ package com.example.softrelic.service;
 import com.example.softrelic.domain.Post;
 import com.example.softrelic.domain.User;
 import com.example.softrelic.dtos.PostDto;
+import com.example.softrelic.dtos.PostResponseDto;
 import com.example.softrelic.repository.PostRepository;
 import com.example.softrelic.repository.UserRepository;
 import org.springframework.stereotype.Service;
+import org.w3c.dom.stylesheets.LinkStyle;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -19,6 +23,9 @@ public class PostService {
         this.postRepository = postRepository;
     }
 
+    public List<PostResponseDto> getPosts(){
+        return postRepository.getPostsWithAuthor();
+    }
     public Post createPost(PostDto postDto, Long userId) {
         Optional<User> userOptional = userRepository.findById(userId);
         if (userOptional.isEmpty()) {
@@ -33,3 +40,4 @@ public class PostService {
         return postRepository.save(post);
     }
 }
+
